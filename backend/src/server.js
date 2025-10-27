@@ -1,5 +1,8 @@
 const express = require('express');
 const notesRoutes =require("./routes/notesRoutes.js");
+const {connectDB} = require("../config/db.js");
+
+connectDB();
 const app = express();
 
 app.use("/api/notes",notesRoutes);
