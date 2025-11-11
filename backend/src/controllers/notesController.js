@@ -1,16 +1,24 @@
- function getAllNotes(req,res){
-    res.status(200).send("you fetched  5 notes");
+import Note from '../models/Note.js';
+
+  export async function getAllNotes(req,res){
+    try {
+        const notes= await Note.find();
+        res.status(200).json(notes);
+    } catch (error) {
+        console.error("Error fetching notes:", error);  
+        res.status(500).json({message:"INternal Server Error"});
+    }
+
 }
 
- function createNote(req,res){
+  export  function createNote(req,res){
     res.status(201).json({message:"Note created successfully"});
 }
 
- function updateNote(req,res){
+  export function updateNote(req,res){
         res.status(200).json({message:"Note updated successfully"});
 }
 
-function deleteNote(req,res){
+export function deleteNote(req,res){
     res.status(200).json({message:"Note deleted successfully"});
 }
-module.exports={getAllNotes,createNote,updateNote,deleteNote};
